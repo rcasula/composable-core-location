@@ -17,14 +17,13 @@ extension LocationManager {
   /// )
   /// ```
   public static var live: Self {
-    let manager = CLLocationManager()
-
-      let delegate = Effect<Action>.publisher {
-          let delegate = LocationManagerDelegate()
+      let manager = CLLocationManager()
+      let delegate = Effect.publisher {
+          let publisher = PassthroughSubject<Action, Never>()
+          let delegate = LocationManagerDelegate(publisher)
           manager.delegate = delegate
-          return delegate.subject.eraseToAnyPublisher()
-    }
-
+          return publisher.share()
+      }
     return Self(
       accuracyAuthorization: {
         #if (compiler(>=5.3) && !(os(macOS) || targetEnvironment(macCatalyst))) || compiler(>=5.3.1)
@@ -44,11 +43,9 @@ extension LocationManager {
       },
       delegate: { delegate },
       dismissHeadingCalibrationDisplay: {
-          .run { _ in
           #if os(iOS) || os(macOS) || os(watchOS) || targetEnvironment(macCatalyst)
             manager.dismissHeadingCalibrationDisplay()
           #endif
-        }
       },
       heading: {
         #if os(iOS) || os(watchOS) || targetEnvironment(macCatalyst)
@@ -72,7 +69,7 @@ extension LocationManager {
         #endif
       },
       location: { manager.location.map(Location.init(rawValue:)) },
-      locationServicesEnabled: CLLocationManager.locationServicesEnabled,
+      locationServicesEnabled: { CLLocationManager.locationServicesEnabled() },
       maximumRegionMonitoringDistance: {
         #if os(iOS) || os(macOS) || targetEnvironment(macCatalyst)
           return manager.maximumRegionMonitoringDistance
@@ -88,21 +85,17 @@ extension LocationManager {
         #endif
       },
       requestAlwaysAuthorization: {
-        .run { _ in
           #if os(iOS) || os(macOS) || os(watchOS) || targetEnvironment(macCatalyst)
             manager.requestAlwaysAuthorization()
           #endif
-        }
       },
       requestLocation: {
-        .run { _ in manager.requestLocation() }
+        manager.requestLocation()
       },
       requestWhenInUseAuthorization: {
-        .run { _ in
           #if os(iOS) || os(macOS) || os(watchOS) || targetEnvironment(macCatalyst)
             manager.requestWhenInUseAuthorization()
           #endif
-        }
       },
       requestTemporaryFullAccuracyAuthorization: { purposeKey in
           
@@ -133,7 +126,6 @@ extension LocationManager {
         }
       },
       set: { properties in
-        .run { _ in
           #if os(iOS) || os(watchOS) || targetEnvironment(macCatalyst)
             if let activityType = properties.activityType {
               manager.activityType = activityType
@@ -168,7 +160,6 @@ extension LocationManager {
               manager.showsBackgroundLocationIndicator = showsBackgroundLocationIndicator
             }
           #endif
-        }
       },
       significantLocationChangeMonitoringAvailable: {
         #if os(iOS) || os(macOS) || targetEnvironment(macCatalyst)
@@ -178,74 +169,54 @@ extension LocationManager {
         #endif
       },
       startMonitoringForRegion: { region in
-        .run { _ in
           #if os(iOS) || os(macOS) || targetEnvironment(macCatalyst)
             manager.startMonitoring(for: region.rawValue!)
           #endif
-        }
       },
       startMonitoringSignificantLocationChanges: {
-        .run { _ in
           #if os(iOS) || targetEnvironment(macCatalyst)
             manager.startMonitoringSignificantLocationChanges()
           #endif
-        }
       },
       startMonitoringVisits: {
-        .run { _ in
           #if os(iOS) || targetEnvironment(macCatalyst)
             manager.startMonitoringVisits()
           #endif
-        }
       },
       startUpdatingHeading: {
-        .run { _ in
           #if os(iOS) || os(macOS) || os(watchOS) || targetEnvironment(macCatalyst)
             manager.startUpdatingHeading()
           #endif
-        }
       },
       startUpdatingLocation: {
-        .run { _ in
           #if os(iOS) || os(macOS) || os(watchOS) || targetEnvironment(macCatalyst)
             manager.startUpdatingLocation()
           #endif
-        }
       },
       stopMonitoringForRegion: { region in
-        .run { _ in
           #if os(iOS) || os(macOS) || targetEnvironment(macCatalyst)
             manager.stopMonitoring(for: region.rawValue!)
           #endif
-        }
       },
       stopMonitoringSignificantLocationChanges: {
-        .run { _ in
           #if os(iOS) || targetEnvironment(macCatalyst)
             manager.stopMonitoringSignificantLocationChanges()
           #endif
-        }
       },
       stopMonitoringVisits: {
-        .run { _ in
           #if os(iOS) || targetEnvironment(macCatalyst)
             manager.stopMonitoringVisits()
           #endif
-        }
       },
       stopUpdatingHeading: {
-        .run { _ in
           #if os(iOS) || os(watchOS) || targetEnvironment(macCatalyst)
             manager.stopUpdatingHeading()
           #endif
-        }
       },
       stopUpdatingLocation: {
-        .run { _ in
           #if os(iOS) || os(macOS) || os(watchOS) || targetEnvironment(macCatalyst)
             manager.stopUpdatingLocation()
           #endif
-        }
       }
     )
   }
@@ -268,10 +239,14 @@ private class LocationManagerDelegate: NSObject, CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     self.subject.send(.didFailWithError(LocationManager.Error(error)))
   }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+    }
 
-  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    self.subject.send(.didUpdateLocations(locations.map(Location.init(rawValue:))))
-  }
+//  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//    self.subject.send(.didUpdateLocations(locations.map(Location.init(rawValue:))))
+//  }
 
   #if os(macOS)
     func locationManager(

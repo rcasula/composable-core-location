@@ -14,21 +14,23 @@ private let readMe = """
 
 struct LocationManagerView: View {
   @Environment(\.colorScheme) var colorScheme
-  let store: Store<AppState, AppAction>
+  let store: StoreOf<AppReducer>
 
   var body: some View {
-    WithViewStore(self.store) { viewStore in
+    WithViewStore(self.store, observe: {$0 }) { viewStore in
       ZStack {
         MapView(
           pointsOfInterest: viewStore.pointsOfInterest,
-          region: viewStore.binding(get: { $0.region }, send: AppAction.updateRegion)
+          region: viewStore.binding(get: { $0.region }, send: { .updateRegion($0) })
         )
         .edgesIgnoringSafeArea([.all])
 
         VStack(alignment: .trailing) {
           Spacer()
 
-          Button(action: { viewStore.send(.currentLocationButtonTapped) }) {
+            Button(action: { 
+                viewStore.send(.currentLocationButtonTapped)
+            }) {
             Image(systemName: "location")
               .foregroundColor(Color.white)
               .frame(width: 60, height: 60)
@@ -40,7 +42,7 @@ struct LocationManagerView: View {
 
           ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 16) {
-              ForEach(AppState.pointOfInterestCategories, id: \.rawValue) { category in
+                ForEach(AppReducer.State.pointOfInterestCategories, id: \.rawValue) { category in
                 Button(category.displayName) { viewStore.send(.categoryButtonTapped(category)) }
                   .padding([.all], 16)
                   .background(
@@ -54,10 +56,9 @@ struct LocationManagerView: View {
             .padding([.bottom], 32)
           }
         }
+      }.onAppear {
+          viewStore.send(.onAppear)
       }
-      .alert(self.store.scope(state: { $0.alert }), dismiss: .dismissAlertButtonTapped)
-      .onAppear { viewStore.send(.onAppear) }
-      .onDisappear { viewStore.send(.onDisappear) }
     }
   }
 }
@@ -74,11 +75,7 @@ struct ContentView: View {
           NavigationLink(
             "Go to demo",
             destination: LocationManagerView(
-              store: Store(
-                initialState: AppState(),
-                reducer: appReducer,
-                environment: AppEnvironment(localSearch: .live, locationManager: .live)
-              )
+                store: Store(initialState: AppReducer.State()) { AppReducer() }
             )
           )
         }
@@ -88,42 +85,3 @@ struct ContentView: View {
     .navigationViewStyle(StackNavigationViewStyle())
   }
 }
-
-#if DEBUG
-  struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-      // NB: CLLocationManager mostly does not work in SwiftUI previews, so we provide a mock
-      //     manager that has all authorization allowed and mocks the device's current location
-      //     to Brooklyn, NY.
-      let mockLocation = Location(
-        coordinate: CLLocationCoordinate2D(latitude: 40.6501, longitude: -73.94958)
-      )
-      let locationManagerSubject = PassthroughSubject<LocationManager.Action, Never>()
-      var locationManager = LocationManager.live
-      locationManager.authorizationStatus = { .authorizedAlways }
-      locationManager.delegate = { locationManagerSubject.eraseToEffect() }
-      locationManager.locationServicesEnabled = { true }
-      locationManager.requestLocation = {
-        .fireAndForget { locationManagerSubject.send(.didUpdateLocations([mockLocation])) }
-      }
-
-      let appView = LocationManagerView(
-        store: Store(
-          initialState: AppState(),
-          reducer: appReducer,
-          environment: AppEnvironment(
-            localSearch: .live,
-            locationManager: locationManager
-          )
-        )
-      )
-
-      return Group {
-        ContentView()
-        appView
-        appView
-          .environment(\.colorScheme, .dark)
-      }
-    }
-  }
-#endif

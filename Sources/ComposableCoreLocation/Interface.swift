@@ -178,7 +178,7 @@ import CoreLocation
 /// control, and even what happens when the request for their location fails. It is very easy to
 /// write these tests, and we can test deep, subtle properties of our application.
 ///
-public struct LocationManager {
+public struct LocationManager: Sendable {
   /// Actions that correspond to `CLLocationManagerDelegate` methods.
   ///
   /// See `CLLocationManagerDelegate` for more information.
@@ -253,59 +253,59 @@ public struct LocationManager {
     }
   }
 
-  public var accuracyAuthorization: () -> AccuracyAuthorization?
+  public var accuracyAuthorization: @Sendable () -> AccuracyAuthorization?
 
-  public var authorizationStatus: () -> CLAuthorizationStatus
+  public var authorizationStatus: @Sendable () -> CLAuthorizationStatus
 
-  public var delegate: () -> Effect<Action>
+  public var delegate: @Sendable () -> Effect<Action>
 
-  public var dismissHeadingCalibrationDisplay: () -> Effect<Never>
+  public var dismissHeadingCalibrationDisplay: @Sendable () -> ()
 
-  public var heading: () -> Heading?
+  public var heading: @Sendable () -> Heading?
 
-  public var headingAvailable: () -> Bool
+  public var headingAvailable: @Sendable () -> Bool
 
-  public var isRangingAvailable: () -> Bool
+  public var isRangingAvailable: @Sendable () -> Bool
 
-  public var location: () -> Location?
+  public var location: @Sendable () -> Location?
 
-  public var locationServicesEnabled: () -> Bool
+  public var locationServicesEnabled: @Sendable () -> Bool
 
-  public var maximumRegionMonitoringDistance: () -> CLLocationDistance
+  public var maximumRegionMonitoringDistance: @Sendable () -> CLLocationDistance
 
-  public var monitoredRegions: () -> Set<Region>
+  public var monitoredRegions: @Sendable () -> Set<Region>
 
-  public var requestAlwaysAuthorization: () -> Effect<Never>
+  public var requestAlwaysAuthorization: @Sendable () -> ()
 
-  public var requestLocation: () -> Effect<Never>
+  public var requestLocation: @Sendable () -> ()
 
-  public var requestWhenInUseAuthorization: () -> Effect<Never>
+  public var requestWhenInUseAuthorization: @Sendable () -> ()
 
-  public var requestTemporaryFullAccuracyAuthorization: (String) -> Effect<Action>
+  public var requestTemporaryFullAccuracyAuthorization: @Sendable (String) -> Effect<Action>
 
-  public var set: (Properties) -> Effect<Never>
+  public var set: @Sendable (Properties) -> ()
 
-  public var significantLocationChangeMonitoringAvailable: () -> Bool
+  public var significantLocationChangeMonitoringAvailable: @Sendable () -> Bool
 
-  public var startMonitoringForRegion: (Region) -> Effect<Never>
+  public var startMonitoringForRegion: @Sendable (Region) -> ()
 
-  public var startMonitoringSignificantLocationChanges: () -> Effect<Never>
+  public var startMonitoringSignificantLocationChanges: @Sendable () -> ()
 
-  public var startMonitoringVisits: () -> Effect<Never>
+  public var startMonitoringVisits: @Sendable () -> ()
 
-  public var startUpdatingHeading: () -> Effect<Never>
+  public var startUpdatingHeading: @Sendable () -> ()
 
-  public var startUpdatingLocation: () -> Effect<Never>
+  public var startUpdatingLocation: @Sendable () -> ()
 
-  public var stopMonitoringForRegion: (Region) -> Effect<Never>
+  public var stopMonitoringForRegion: @Sendable (Region) -> ()
 
-  public var stopMonitoringSignificantLocationChanges: () -> Effect<Never>
+  public var stopMonitoringSignificantLocationChanges: @Sendable () -> ()
 
-  public var stopMonitoringVisits: () -> Effect<Never>
+  public var stopMonitoringVisits: @Sendable () -> ()
 
-  public var stopUpdatingHeading: () -> Effect<Never>
+  public var stopUpdatingHeading: @Sendable () -> ()
 
-  public var stopUpdatingLocation: () -> Effect<Never>
+  public var stopUpdatingLocation: @Sendable () -> ()
 
   /// Updates the given properties of a uniquely identified `CLLocationManager`.
   public func set(
@@ -317,11 +317,11 @@ public struct LocationManager {
     headingOrientation: CLDeviceOrientation? = nil,
     pausesLocationUpdatesAutomatically: Bool? = nil,
     showsBackgroundLocationIndicator: Bool? = nil
-  ) -> Effect<Never> {
+  ) {
     #if os(macOS) || os(tvOS) || os(watchOS)
-      return .none
+      return
     #else
-      return self.set(
+      self.set(
         Properties(
           activityType: activityType,
           allowsBackgroundLocationUpdates: allowsBackgroundLocationUpdates,

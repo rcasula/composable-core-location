@@ -5,19 +5,13 @@ import MapKit
 extension LocalSearchClient {
   public static let live = LocalSearchClient(
     search: { request in
-      EffectPublisher.future { callback in
-        MKLocalSearch(request: request).start { response, error in
-          switch (response, error) {
-          case let (.some(response), _):
-            callback(.success(LocalSearchResponse(response: response)))
-
-          case (_, .some):
-            callback(.failure(LocalSearchClient.Error()))
-
-          case (.none, .none):
-            fatalError("It should not be possible that response and error are both nil.")
-          }
+        Effect.run { send in
+            do {
+                let response = try await MKLocalSearch(request: request).start()
+                await send(LocalSearchResponse.results(response.boundingRegion, response.mapItems.map(MapItem.init)))
+            } catch let e {
+                    await send(LocalSearchResponse.error(e))
+            }
         }
-      }
     })
 }
