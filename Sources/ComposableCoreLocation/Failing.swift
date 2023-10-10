@@ -37,73 +37,73 @@ extension LocationManager {
   ///   .fireAndForget { locationManagerSubject.send(.didUpdateLocations([mockLocation])) }
   /// }
   /// ```
-  public static let failing = Self(
-    accuracyAuthorization: {
-      XCTFail("A failing endpoint was accessed: 'LocationManager.accuracyAuthorization'")
-      return nil
-    },
-    authorizationStatus: {
-      XCTFail("A failing endpoint was accessed: 'LocationManager.authorizationStatus'")
-      return .notDetermined
-    },
-    delegate: { .failing("LocationManager.delegate") },
-    dismissHeadingCalibrationDisplay: {
-      .failing("LocationManager.dismissHeadingCalibrationDisplay")
-    },
-    heading: {
-      XCTFail("A failing endpoint was accessed: 'LocationManager.heading'")
-      return nil
-    },
-    headingAvailable: {
-      XCTFail("A failing endpoint was accessed: 'LocationManager.headingAvailable'")
-      return false
-    },
-    isRangingAvailable: {
-      XCTFail("A failing endpoint was accessed: 'LocationManager.isRangingAvailable'")
-      return false
-    },
-    location: {
-      XCTFail("A failing endpoint was accessed: 'LocationManager.location'")
-      return nil
-    },
-    locationServicesEnabled: {
-      XCTFail("A failing endpoint was accessed: 'LocationManager.locationServicesEnabled'")
-      return false
-    },
-    maximumRegionMonitoringDistance: {
-      XCTFail("A failing endpoint was accessed: 'LocationManager.maximumRegionMonitoringDistance'")
-      return CLLocationDistanceMax
-    },
-    monitoredRegions: {
-      XCTFail("A failing endpoint was accessed: 'LocationManager.monitoredRegions'")
-      return []
-    },
-    requestAlwaysAuthorization: { .failing("LocationManager.requestAlwaysAuthorization") },
-    requestLocation: { .failing("LocationManager.requestLocation") },
-    requestWhenInUseAuthorization: {
-      .failing("LocationManager.requestWhenInUseAuthorization")
-    },
-    requestTemporaryFullAccuracyAuthorization: { _ in
-      .failing("LocationManager.requestTemporaryFullAccuracyAuthorization")
-    },
-    set: { _ in .failing("LocationManager.set") },
-    significantLocationChangeMonitoringAvailable: {
-      XCTFail()
-      return false
-    },
-    startMonitoringForRegion: { _ in .failing("LocationManager.startMonitoringForRegion") },
-    startMonitoringSignificantLocationChanges: {
-      .failing("LocationManager.startMonitoringSignificantLocationChanges")
-    },
-    startMonitoringVisits: { .failing("LocationManager.startMonitoringVisits") },
-    startUpdatingHeading: { .failing("LocationManager.startUpdatingHeading") },
-    startUpdatingLocation: { .failing("LocationManager.startUpdatingLocation") },
-    stopMonitoringForRegion: { _ in .failing("LocationManager.stopMonitoringForRegion") },
-    stopMonitoringSignificantLocationChanges: {
-      .failing("LocationManager.stopMonitoringSignificantLocationChanges")
-    },
-    stopMonitoringVisits: { .failing("LocationManager.stopMonitoringVisits") },
-    stopUpdatingHeading: { .failing("LocationManager.stopUpdatingHeading") },
-    stopUpdatingLocation: { .failing("LocationManager.stopUpdatingLocation") }
-  )
+//  public static let failing = Self(
+//    accuracyAuthorization: {
+//      XCTFail("A failing endpoint was accessed: 'LocationManager.accuracyAuthorization'")
+//      return nil
+//    },
+//    authorizationStatus: {
+//      XCTFail("A failing endpoint was accessed: 'LocationManager.authorizationStatus'")
+//      return .notDetermined
+//    },
+//    delegate: { .failing("LocationManager.delegate") },
+//    dismissHeadingCalibrationDisplay: {
+//      .failing("LocationManager.dismissHeadingCalibrationDisplay")
+//    },
+//    heading: {
+//      XCTFail("A failing endpoint was accessed: 'LocationManager.heading'")
+//      return nil
+//    },
+//    headingAvailable: {
+//      XCTFail("A failing endpoint was accessed: 'LocationManager.headingAvailable'")
+//      return false
+//    },
+//    isRangingAvailable: {
+//      XCTFail("A failing endpoint was accessed: 'LocationManager.isRangingAvailable'")
+//      return false
+//    },
+//    location: {
+//      XCTFail("A failing endpoint was accessed: 'LocationManager.location'")
+//      return nil
+//    },
+//    locationServicesEnabled: {
+//      XCTFail("A failing endpoint was accessed: 'LocationManager.locationServicesEnabled'")
+//      return false
+//    },
+//    maximumRegionMonitoringDistance: {
+//      XCTFail("A failing endpoint was accessed: 'LocationManager.maximumRegionMonitoringDistance'")
+//      return CLLocationDistanceMax
+//    },
+//    monitoredRegions: {
+//      XCTFail("A failing endpoint was accessed: 'LocationManager.monitoredRegions'")
+//      return []
+//    },
+//    requestAlwaysAuthorization: { .failing("LocationManager.requestAlwaysAuthorization") },
+//    requestLocation: { .failing("LocationManager.requestLocation") },
+//    requestWhenInUseAuthorization: {
+//      .failing("LocationManager.requestWhenInUseAuthorization")
+//    },
+//    requestTemporaryFullAccuracyAuthorization: { _ in
+//      .failing("LocationManager.requestTemporaryFullAccuracyAuthorization")
+//    },
+//    set: { _ in .failing("LocationManager.set") },
+//    significantLocationChangeMonitoringAvailable: {
+//      XCTFail()
+//      return false
+//    },
+//    startMonitoringForRegion: { _ in .failing("LocationManager.startMonitoringForRegion") },
+//    startMonitoringSignificantLocationChanges: {
+//      .failing("LocationManager.startMonitoringSignificantLocationChanges")
+//    },
+//    startMonitoringVisits: { .failing("LocationManager.startMonitoringVisits") },
+//    startUpdatingHeading: { .failing("LocationManager.startUpdatingHeading") },
+//    startUpdatingLocation: { .failing("LocationManager.startUpdatingLocation") },
+//    stopMonitoringForRegion: { _ in .failing("LocationManager.stopMonitoringForRegion") },
+//    stopMonitoringSignificantLocationChanges: {
+//      .failing("LocationManager.stopMonitoringSignificantLocationChanges")
+//    },
+//    stopMonitoringVisits: { .failing("LocationManager.stopMonitoringVisits") },
+//    stopUpdatingHeading: { .failing("LocationManager.stopUpdatingHeading") },
+//    stopUpdatingLocation: { .failing("LocationManager.stopUpdatingLocation") }
+//  )
 }
