@@ -102,22 +102,14 @@ extension LocationManager {
           return .publisher {
               let subject = PassthroughSubject<Action, Never>()
           #if (compiler(>=5.3) && !(os(macOS) || targetEnvironment(macCatalyst))) || compiler(>=5.3.1)
-            if #available(iOS 14.0, tvOS 14.0, macOS 11.0, macCatalyst 14.0, *) {
+            if #available(watchOS 7.0, *) {
               manager.requestTemporaryFullAccuracyAuthorization(
                 withPurposeKey: purposeKey
               ) { error in
-                  let lmError = error.map { LocationManager.Error($0)
+                  _ = error.map { LocationManager.Error($0)
                   }
-                  guard let e = lmError else {
-                      subject.send(completion: .finished)
-                      return
-                  }
-                  subject.send(LocationManager.Action.didFinishDeferredUpdatesWithError(e))
                   subject.send(completion: .finished)
-                  
               }
-            } else {
-              subject.send(completion: .finished)
             }
           #else
             subject.send(completion: .finished)
