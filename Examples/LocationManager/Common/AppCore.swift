@@ -27,7 +27,7 @@ extension DependencyValues {
     get { self[LocalSearchClient.self] }
     set { self[LocalSearchClient.self] = newValue }
   }
-  
+
   var locationManager: LocationManager {
     get { self[LocationManager.self] }
     set { self[LocationManager.self] = newValue }
@@ -37,7 +37,6 @@ extension DependencyValues {
 extension LocationManager: DependencyKey {
   public static var liveValue = LocationManager.live
 }
-
 
 private struct LocationManagerId: Hashable {}
 private struct CancelSearchId: Hashable {}
@@ -85,7 +84,7 @@ public struct AppReducer: Reducer {
     case onDisappear
     case updateRegion(CoordinateRegion?)
   }
-  
+
   public var body: some ReducerOf<Self> {
     return Reduce { state, action in
       switch action {
@@ -95,43 +94,45 @@ public struct AppReducer: Reducer {
           state.pointsOfInterest = []
           return .cancel(id: CancelSearchId())
         }
-        
+
         state.pointOfInterestCategory = category
-        
+
         let request = MKLocalSearch.Request()
         request.pointOfInterestFilter = MKPointOfInterestFilter(including: [category])
         if let region = state.region?.asMKCoordinateRegion {
           request.region = region
         }
         return localSearchClient.search(request).map(Action.localSearchResponse)
-        
+
       case .currentLocationButtonTapped:
 
         switch locationManager.authorizationStatus() {
         case .notDetermined:
           state.isRequestingCurrentLocation = true
-#if os(macOS)
-          locationManager
-            .requestAlwaysAuthorization()
-#else
-          locationManager
-            .requestWhenInUseAuthorization()
-          return .none
-#endif
-          
+          #if os(macOS)
+            locationManager
+              .requestAlwaysAuthorization()
+          #else
+            locationManager
+              .requestWhenInUseAuthorization()
+            return .none
+          #endif
+
         case .restricted:
-          state.alert = .init(title: TextState("Please give us access to your location in settings."))
+          state.alert = .init(
+            title: TextState("Please give us access to your location in settings."))
           return .none
-          
+
         case .denied:
-          state.alert = .init(title: TextState("Please give us access to your location in settings."))
+          state.alert = .init(
+            title: TextState("Please give us access to your location in settings."))
           return .none
-          
+
         case .authorizedAlways, .authorizedWhenInUse:
           locationManager
             .requestLocation()
           return .none
-          
+
         @unknown default:
           return .none
         }
@@ -152,11 +153,12 @@ public struct AppReducer: Reducer {
           state.alert = .init(title: TextState(e.localizedDescription))
           return .none
         }
-        
+
         return .none
       case let .locationManager(action):
         switch action {
-        case .didChangeAuthorization(.authorizedAlways), .didChangeAuthorization(.authorizedWhenInUse):
+        case .didChangeAuthorization(.authorizedAlways),
+          .didChangeAuthorization(.authorizedWhenInUse):
           if state.isRequestingCurrentLocation {
             locationManager.requestLocation()
             return .none
@@ -171,9 +173,11 @@ public struct AppReducer: Reducer {
         case let .didUpdateLocations(locations):
           state.isRequestingCurrentLocation = false
           guard let location = locations.first else { return .none }
-          state.region = CoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+          state.region = CoordinateRegion(
+            center: location.coordinate,
+            span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
           return .none
-          
+
         default:
           return .none
         }
@@ -183,12 +187,12 @@ public struct AppReducer: Reducer {
         return .none
       case let .updateRegion(region):
         state.region = region
-        
+
         guard
           let category = state.pointOfInterestCategory,
           let region = state.region?.asMKCoordinateRegion
         else { return .none }
-        
+
         let request = MKLocalSearch.Request()
         request.pointOfInterestFilter = MKPointOfInterestFilter(including: [category])
         request.region = region

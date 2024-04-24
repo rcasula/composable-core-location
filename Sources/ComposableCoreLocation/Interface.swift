@@ -259,7 +259,7 @@ public struct LocationManager: Sendable {
 
   public var delegate: @Sendable () -> Effect<Action>
 
-  public var dismissHeadingCalibrationDisplay: @Sendable () -> ()
+  public var dismissHeadingCalibrationDisplay: @Sendable () -> Void
 
   public var heading: @Sendable () -> Heading?
 
@@ -275,37 +275,37 @@ public struct LocationManager: Sendable {
 
   public var monitoredRegions: @Sendable () -> Set<Region>
 
-  public var requestAlwaysAuthorization: @Sendable () -> ()
+  public var requestAlwaysAuthorization: @Sendable () -> Void
 
-  public var requestLocation: @Sendable () -> ()
+  public var requestLocation: @Sendable () -> Void
 
-  public var requestWhenInUseAuthorization: @Sendable () -> ()
+  public var requestWhenInUseAuthorization: @Sendable () -> Void
 
   public var requestTemporaryFullAccuracyAuthorization: @Sendable (String) -> Effect<Action>
 
-  public var set: @Sendable (Properties) -> ()
+  public var set: @Sendable (Properties) -> Void
 
   public var significantLocationChangeMonitoringAvailable: @Sendable () -> Bool
 
-  public var startMonitoringForRegion: @Sendable (Region) -> ()
+  public var startMonitoringForRegion: @Sendable (Region) -> Void
 
-  public var startMonitoringSignificantLocationChanges: @Sendable () -> ()
+  public var startMonitoringSignificantLocationChanges: @Sendable () -> Void
 
-  public var startMonitoringVisits: @Sendable () -> ()
+  public var startMonitoringVisits: @Sendable () -> Void
 
-  public var startUpdatingHeading: @Sendable () -> ()
+  public var startUpdatingHeading: @Sendable () -> Void
 
-  public var startUpdatingLocation: @Sendable () -> ()
+  public var startUpdatingLocation: @Sendable () -> Void
 
-  public var stopMonitoringForRegion: @Sendable (Region) -> ()
+  public var stopMonitoringForRegion: @Sendable (Region) -> Void
 
-  public var stopMonitoringSignificantLocationChanges: @Sendable () -> ()
+  public var stopMonitoringSignificantLocationChanges: @Sendable () -> Void
 
-  public var stopMonitoringVisits: @Sendable () -> ()
+  public var stopMonitoringVisits: @Sendable () -> Void
 
-  public var stopUpdatingHeading: @Sendable () -> ()
+  public var stopUpdatingHeading: @Sendable () -> Void
 
-  public var stopUpdatingLocation: @Sendable () -> ()
+  public var stopUpdatingLocation: @Sendable () -> Void
 
   /// Updates the given properties of a uniquely identified `CLLocationManager`.
   public func set(

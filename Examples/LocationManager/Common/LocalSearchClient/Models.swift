@@ -1,6 +1,5 @@
 import MapKit
 
-
 public struct MapItem: Equatable {
   public var isCurrentLocation: Bool
   public var name: String?

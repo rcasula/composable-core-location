@@ -39,85 +39,96 @@ extension LocationManager {
   /// ```
   public static let failing = Self(
     accuracyAuthorization: {
-        unimplemented("A failing endpoint was accessed: 'LocationManager.accuracyAuthorization'")
+      unimplemented("A failing endpoint was accessed: 'LocationManager.accuracyAuthorization'")
     },
     authorizationStatus: {
-        unimplemented("A failing endpoint was accessed: 'LocationManager.authorizationStatus'")
+      unimplemented("A failing endpoint was accessed: 'LocationManager.authorizationStatus'")
     },
     delegate: {
-        unimplemented("A failing endpoint was accessed: 'LocationManager.delegate'")
+      unimplemented("A failing endpoint was accessed: 'LocationManager.delegate'")
     },
     dismissHeadingCalibrationDisplay: {
-      unimplemented("A failing endpoint was accessed: 'LocationManager.dismissHeadingCalibrationDisplay'")
+      unimplemented(
+        "A failing endpoint was accessed: 'LocationManager.dismissHeadingCalibrationDisplay'")
     },
     heading: {
-        unimplemented("A failing endpoint was accessed: 'LocationManager.heading'")
+      unimplemented("A failing endpoint was accessed: 'LocationManager.heading'")
     },
     headingAvailable: {
-        unimplemented("A failing endpoint was accessed: 'LocationManager.headingAvailable'")
+      unimplemented("A failing endpoint was accessed: 'LocationManager.headingAvailable'")
     },
     isRangingAvailable: {
-        unimplemented("A failing endpoint was accessed: 'LocationManager.isRangingAvailable'")
+      unimplemented("A failing endpoint was accessed: 'LocationManager.isRangingAvailable'")
     },
     location: {
-        unimplemented("A failing endpoint was accessed: 'LocationManager.location'")
+      unimplemented("A failing endpoint was accessed: 'LocationManager.location'")
     },
     locationServicesEnabled: {
-        unimplemented("A failing endpoint was accessed: 'LocationManager.locationServicesEnabled'")
+      unimplemented("A failing endpoint was accessed: 'LocationManager.locationServicesEnabled'")
     },
     maximumRegionMonitoringDistance: {
-        unimplemented("A failing endpoint was accessed: 'LocationManager.maximumRegionMonitoringDistance'")
+      unimplemented(
+        "A failing endpoint was accessed: 'LocationManager.maximumRegionMonitoringDistance'")
     },
     monitoredRegions: {
-        unimplemented("A failing endpoint was accessed: 'LocationManager.monitoredRegions'")
+      unimplemented("A failing endpoint was accessed: 'LocationManager.monitoredRegions'")
     },
     requestAlwaysAuthorization: {
-        unimplemented("A failing endpoint was accessed: 'LocationManager.requestAlwaysAuthorization'")
+      unimplemented("A failing endpoint was accessed: 'LocationManager.requestAlwaysAuthorization'")
     },
     requestLocation: {
-        unimplemented("A failing endpoint was accessed: 'LocationManager.requestLocation'")
+      unimplemented("A failing endpoint was accessed: 'LocationManager.requestLocation'")
     },
     requestWhenInUseAuthorization: {
-        unimplemented("A failing endpoint was accessed: 'LocationManager.requestWhenInUseAuthorization'")
+      unimplemented(
+        "A failing endpoint was accessed: 'LocationManager.requestWhenInUseAuthorization'")
     },
     requestTemporaryFullAccuracyAuthorization: { _ in
-        unimplemented("A failing endpoint was accessed: 'LocationManager.requestTemporaryFullAccuracyAuthorization'")
+      unimplemented(
+        "A failing endpoint was accessed: 'LocationManager.requestTemporaryFullAccuracyAuthorization'"
+      )
     },
-    set: { _ in 
-        unimplemented("A failing endpoint was accessed: 'LocationManager.set'")
+    set: { _ in
+      unimplemented("A failing endpoint was accessed: 'LocationManager.set'")
     },
     significantLocationChangeMonitoringAvailable: {
-        unimplemented("A failing endpoint was accessed: 'LocationManager.significantLocationChangeMonitoringAvailable'")
+      unimplemented(
+        "A failing endpoint was accessed: 'LocationManager.significantLocationChangeMonitoringAvailable'"
+      )
     },
     startMonitoringForRegion: { _ in
-        unimplemented("A failing endpoint was accessed: 'LocationManager.startMonitoringForRegion'")
+      unimplemented("A failing endpoint was accessed: 'LocationManager.startMonitoringForRegion'")
     },
     startMonitoringSignificantLocationChanges: {
-        unimplemented("A failing endpoint was accessed: 'LocationManager.startMonitoringSignificantLocationChanges'")
+      unimplemented(
+        "A failing endpoint was accessed: 'LocationManager.startMonitoringSignificantLocationChanges'"
+      )
     },
-    startMonitoringVisits: { 
-        unimplemented("A failing endpoint was accessed: 'LocationManager.startMonitoringVisits'")
+    startMonitoringVisits: {
+      unimplemented("A failing endpoint was accessed: 'LocationManager.startMonitoringVisits'")
     },
     startUpdatingHeading: {
-        unimplemented("A failing endpoint was accessed: 'LocationManager.startUpdatingHeading'")
+      unimplemented("A failing endpoint was accessed: 'LocationManager.startUpdatingHeading'")
     },
     startUpdatingLocation: {
-        unimplemented("A failing endpoint was accessed: 'LocationManager.startUpdatingLocation'")
+      unimplemented("A failing endpoint was accessed: 'LocationManager.startUpdatingLocation'")
     },
-    stopMonitoringForRegion: { _ in 
-        unimplemented("A failing endpoint was accessed: 'LocationManager.stopMonitoringForRegion'")
+    stopMonitoringForRegion: { _ in
+      unimplemented("A failing endpoint was accessed: 'LocationManager.stopMonitoringForRegion'")
     },
     stopMonitoringSignificantLocationChanges: {
-        unimplemented("A failing endpoint was accessed: 'LocationManager.stopMonitoringSignificantLocationChanges'")
+      unimplemented(
+        "A failing endpoint was accessed: 'LocationManager.stopMonitoringSignificantLocationChanges'"
+      )
     },
     stopMonitoringVisits: {
-        unimplemented("A failing endpoint was accessed: 'LocationManager.stopMonitoringVisits'")
+      unimplemented("A failing endpoint was accessed: 'LocationManager.stopMonitoringVisits'")
     },
-    stopUpdatingHeading: { 
-        unimplemented("A failing endpoint was accessed: 'LocationManager.stopUpdatingHeading'")
+    stopUpdatingHeading: {
+      unimplemented("A failing endpoint was accessed: 'LocationManager.stopUpdatingHeading'")
     },
-    stopUpdatingLocation: { 
-        unimplemented("A failing endpoint was accessed: 'LocationManager.stopUpdatingLocation'")
+    stopUpdatingLocation: {
+      unimplemented("A failing endpoint was accessed: 'LocationManager.stopUpdatingLocation'")
     }
   )
 }

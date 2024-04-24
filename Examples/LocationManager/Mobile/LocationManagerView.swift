@@ -17,7 +17,7 @@ struct LocationManagerView: View {
   let store: StoreOf<AppReducer>
 
   var body: some View {
-    WithViewStore(self.store, observe: {$0 }) { viewStore in
+    WithViewStore(self.store, observe: { $0 }) { viewStore in
       ZStack {
         MapView(
           pointsOfInterest: viewStore.pointsOfInterest,
@@ -28,9 +28,9 @@ struct LocationManagerView: View {
         VStack(alignment: .trailing) {
           Spacer()
 
-            Button(action: { 
-                viewStore.send(.currentLocationButtonTapped)
-            }) {
+          Button(action: {
+            viewStore.send(.currentLocationButtonTapped)
+          }) {
             Image(systemName: "location")
               .foregroundColor(Color.white)
               .frame(width: 60, height: 60)
@@ -42,7 +42,7 @@ struct LocationManagerView: View {
 
           ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 16) {
-                ForEach(AppReducer.State.pointOfInterestCategories, id: \.rawValue) { category in
+              ForEach(AppReducer.State.pointOfInterestCategories, id: \.rawValue) { category in
                 Button(category.displayName) { viewStore.send(.categoryButtonTapped(category)) }
                   .padding([.all], 16)
                   .background(
@@ -57,7 +57,7 @@ struct LocationManagerView: View {
           }
         }
       }.onAppear {
-          viewStore.send(.onAppear)
+        viewStore.send(.onAppear)
       }
     }
   }
@@ -75,7 +75,7 @@ struct ContentView: View {
           NavigationLink(
             "Go to demo",
             destination: LocationManagerView(
-                store: Store(initialState: AppReducer.State()) { AppReducer() }
+              store: Store(initialState: AppReducer.State()) { AppReducer() }
             )
           )
         }
