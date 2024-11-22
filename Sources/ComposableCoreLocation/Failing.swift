@@ -39,39 +39,39 @@ extension LocationManager {
   /// ```
   public static let failing = Self(
     accuracyAuthorization: {
-      unimplemented("A failing endpoint was accessed: 'LocationManager.accuracyAuthorization'")
+        unimplemented("A failing endpoint was accessed: 'LocationManager.accuracyAuthorization'", placeholder: nil)
     },
     authorizationStatus: {
-      unimplemented("A failing endpoint was accessed: 'LocationManager.authorizationStatus'")
+        unimplemented("A failing endpoint was accessed: 'LocationManager.authorizationStatus'", placeholder: CLAuthorizationStatus.denied)
     },
     delegate: {
-      unimplemented("A failing endpoint was accessed: 'LocationManager.delegate'")
+        unimplemented("A failing endpoint was accessed: 'LocationManager.delegate'", placeholder: .none)
     },
     dismissHeadingCalibrationDisplay: {
       unimplemented(
         "A failing endpoint was accessed: 'LocationManager.dismissHeadingCalibrationDisplay'")
     },
     heading: {
-      unimplemented("A failing endpoint was accessed: 'LocationManager.heading'")
+        unimplemented("A failing endpoint was accessed: 'LocationManager.heading'", placeholder: nil)
     },
     headingAvailable: {
-      unimplemented("A failing endpoint was accessed: 'LocationManager.headingAvailable'")
+        unimplemented("A failing endpoint was accessed: 'LocationManager.headingAvailable'", placeholder: false)
     },
     isRangingAvailable: {
-      unimplemented("A failing endpoint was accessed: 'LocationManager.isRangingAvailable'")
+        unimplemented("A failing endpoint was accessed: 'LocationManager.isRangingAvailable'", placeholder: false)
     },
     location: {
-      unimplemented("A failing endpoint was accessed: 'LocationManager.location'")
+        unimplemented("A failing endpoint was accessed: 'LocationManager.location'", placeholder: nil)
     },
     locationServicesEnabled: {
-      unimplemented("A failing endpoint was accessed: 'LocationManager.locationServicesEnabled'")
+        unimplemented("A failing endpoint was accessed: 'LocationManager.locationServicesEnabled'", placeholder: false)
     },
     maximumRegionMonitoringDistance: {
       unimplemented(
-        "A failing endpoint was accessed: 'LocationManager.maximumRegionMonitoringDistance'")
+        "A failing endpoint was accessed: 'LocationManager.maximumRegionMonitoringDistance'", placeholder: .zero)
     },
     monitoredRegions: {
-      unimplemented("A failing endpoint was accessed: 'LocationManager.monitoredRegions'")
+        unimplemented("A failing endpoint was accessed: 'LocationManager.monitoredRegions'", placeholder: [])
     },
     requestAlwaysAuthorization: {
       unimplemented("A failing endpoint was accessed: 'LocationManager.requestAlwaysAuthorization'")
@@ -85,7 +85,8 @@ extension LocationManager {
     },
     requestTemporaryFullAccuracyAuthorization: { _ in
       unimplemented(
-        "A failing endpoint was accessed: 'LocationManager.requestTemporaryFullAccuracyAuthorization'"
+        "A failing endpoint was accessed: 'LocationManager.requestTemporaryFullAccuracyAuthorization'",
+        placeholder: .none
       )
     },
     set: { _ in
@@ -93,7 +94,8 @@ extension LocationManager {
     },
     significantLocationChangeMonitoringAvailable: {
       unimplemented(
-        "A failing endpoint was accessed: 'LocationManager.significantLocationChangeMonitoringAvailable'"
+        "A failing endpoint was accessed: 'LocationManager.significantLocationChangeMonitoringAvailable'",
+        placeholder: false
       )
     },
     startMonitoringForRegion: { _ in
