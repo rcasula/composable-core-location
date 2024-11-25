@@ -1,6 +1,6 @@
 import Combine
 import ComposableArchitecture
-import ComposableCoreLocation
+import CoreLocationClient
 import MapKit
 import SwiftUI
 
@@ -119,16 +119,16 @@ extension LocationManager {
     
     static func mock() -> Self {
         actor MockStore {
-            let locationManagerSubject: CurrentValueSubject<LocationManager.Action, Never>
+          let locationManagerSubject: LockIsolated<CurrentValueSubject<LocationManager.Action, Never>>
             var currentAuthorizationStatus: CLAuthorizationStatus {
                 didSet {
-                    locationManagerSubject.send(.didChangeAuthorization(currentAuthorizationStatus))
+                  locationManagerSubject.value.send(.didChangeAuthorization(currentAuthorizationStatus))
                 }
             }
             
-            var currentLocation: ComposableCoreLocation.Location? {
+            var currentLocation: CoreLocationClient.Location? {
                 didSet {
-                    locationManagerSubject.send(
+                  locationManagerSubject.value.send(
                         .didUpdateLocations(currentLocation.map { [$0] } ?? [])
                     )
                 }
@@ -136,14 +136,14 @@ extension LocationManager {
             
             init(authorization: CLAuthorizationStatus) {
                 self.currentAuthorizationStatus = authorization
-                self.locationManagerSubject = .init(.didChangeAuthorization(currentAuthorizationStatus))
+              self.locationManagerSubject = .init(.init(.didChangeAuthorization(authorization)))
             }
             
             func update(authorization: CLAuthorizationStatus) {
                 self.currentAuthorizationStatus = authorization
             }
             
-            func update(location: ComposableCoreLocation.Location) {
+            func update(location: CoreLocationClient.Location) {
                 self.currentLocation = location
             }
         }
@@ -159,7 +159,7 @@ extension LocationManager {
 
         manager.delegate = {
             AsyncStream { continuation in
-                let cancellable = store.locationManagerSubject.sink { action in
+              let cancellable = store.locationManagerSubject.value.sink { action in
                     continuation.yield(action)
                 }
                 continuation.onTermination = { _ in

@@ -7,22 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A102C722CF36059006E5DB6 /* CoreLocationClient in Frameworks */ = {isa = PBXBuildFile; productRef = 6A102C712CF36059006E5DB6 /* CoreLocationClient */; };
+		6A102C742CF36066006E5DB6 /* CoreLocationClient in Frameworks */ = {isa = PBXBuildFile; productRef = 6A102C732CF36066006E5DB6 /* CoreLocationClient */; };
 		CA17CC0F24720BBA00BDDF11 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA17CC0E24720BBA00BDDF11 /* SceneDelegate.swift */; };
 		CA17CC1124720BBA00BDDF11 /* LocationManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA17CC1024720BBA00BDDF11 /* LocationManagerView.swift */; };
 		CA17CC1324720BBB00BDDF11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA17CC1224720BBB00BDDF11 /* Assets.xcassets */; };
 		CA17CC3924720BEB00BDDF11 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CA17CC3824720BEB00BDDF11 /* ComposableArchitecture */; };
-		CA17CCB62474582000BDDF11 /* ComposableCoreLocation in Frameworks */ = {isa = PBXBuildFile; productRef = CA17CCB52474582000BDDF11 /* ComposableCoreLocation */; };
 		CA17CCC024745B1000BDDF11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA17CCBF24745B1000BDDF11 /* AppDelegate.swift */; };
 		CA17CCC224745B1000BDDF11 /* LocationManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA17CCC124745B1000BDDF11 /* LocationManagerView.swift */; };
 		CA17CCC424745B1000BDDF11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA17CCC324745B1000BDDF11 /* Assets.xcassets */; };
 		CA17CCE324745B1A00BDDF11 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CA17CCE224745B1A00BDDF11 /* ComposableArchitecture */; };
-		CA17CCE524745B1A00BDDF11 /* ComposableCoreLocation in Frameworks */ = {isa = PBXBuildFile; productRef = CA17CCE424745B1A00BDDF11 /* ComposableCoreLocation */; };
 		CA74947D2474A4F100B13019 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA74946B2474A4F100B13019 /* MapView.swift */; };
 		CA74947E2474A4F100B13019 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA74946B2474A4F100B13019 /* MapView.swift */; };
 		CA74947F2474A4F100B13019 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA74946C2474A4F100B13019 /* Helpers.swift */; };
 		CA7494802474A4F100B13019 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA74946C2474A4F100B13019 /* Helpers.swift */; };
-		CA7494812474A4F100B13019 /* Failing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA74946E2474A4F100B13019 /* Failing.swift */; };
-		CA7494822474A4F100B13019 /* Failing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA74946E2474A4F100B13019 /* Failing.swift */; };
 		CA7494832474A4F100B13019 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA74946F2474A4F100B13019 /* Client.swift */; };
 		CA7494842474A4F100B13019 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA74946F2474A4F100B13019 /* Client.swift */; };
 		CA7494852474A4F100B13019 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7494702474A4F100B13019 /* Models.swift */; };
@@ -67,7 +65,6 @@
 		CA17CCCC24745B1000BDDF11 /* LocationManagerDesktop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LocationManagerDesktop.entitlements; sourceTree = "<group>"; };
 		CA74946B2474A4F100B13019 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		CA74946C2474A4F100B13019 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		CA74946E2474A4F100B13019 /* Failing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Failing.swift; sourceTree = "<group>"; };
 		CA74946F2474A4F100B13019 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		CA7494702474A4F100B13019 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		CA7494712474A4F100B13019 /* Live.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Live.swift; sourceTree = "<group>"; };
@@ -85,8 +82,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA17CCB62474582000BDDF11 /* ComposableCoreLocation in Frameworks */,
 				CA17CC3924720BEB00BDDF11 /* ComposableArchitecture in Frameworks */,
+				6A102C722CF36059006E5DB6 /* CoreLocationClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,8 +91,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA17CCE524745B1A00BDDF11 /* ComposableCoreLocation in Frameworks */,
 				CA17CCE324745B1A00BDDF11 /* ComposableArchitecture in Frameworks */,
+				6A102C742CF36066006E5DB6 /* CoreLocationClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,7 +182,6 @@
 		CA74946D2474A4F100B13019 /* LocalSearchClient */ = {
 			isa = PBXGroup;
 			children = (
-				CA74946E2474A4F100B13019 /* Failing.swift */,
 				CA74946F2474A4F100B13019 /* Client.swift */,
 				CA7494702474A4F100B13019 /* Models.swift */,
 				CA7494712474A4F100B13019 /* Live.swift */,
@@ -220,7 +216,7 @@
 			name = LocationManagerMobile;
 			packageProductDependencies = (
 				CA17CC3824720BEB00BDDF11 /* ComposableArchitecture */,
-				CA17CCB52474582000BDDF11 /* ComposableCoreLocation */,
+				6A102C712CF36059006E5DB6 /* CoreLocationClient */,
 			);
 			productName = LocationManager;
 			productReference = CA17CC0924720BBA00BDDF11 /* LocationManagerMobile.app */;
@@ -241,7 +237,7 @@
 			name = LocationManagerDesktop;
 			packageProductDependencies = (
 				CA17CCE224745B1A00BDDF11 /* ComposableArchitecture */,
-				CA17CCE424745B1A00BDDF11 /* ComposableCoreLocation */,
+				6A102C732CF36066006E5DB6 /* CoreLocationClient */,
 			);
 			productName = LocationManagerDesktop;
 			productReference = CA17CCBD24745B1000BDDF11 /* LocationManagerDesktop.app */;
@@ -374,7 +370,6 @@
 			files = (
 				CA7494892474A4F100B13019 /* AppCore.swift in Sources */,
 				CA17CC0F24720BBA00BDDF11 /* SceneDelegate.swift in Sources */,
-				CA7494812474A4F100B13019 /* Failing.swift in Sources */,
 				CA7494832474A4F100B13019 /* Client.swift in Sources */,
 				CA74947D2474A4F100B13019 /* MapView.swift in Sources */,
 				CA17CC1124720BBA00BDDF11 /* LocationManagerView.swift in Sources */,
@@ -390,7 +385,6 @@
 			files = (
 				CA74948A2474A4F100B13019 /* AppCore.swift in Sources */,
 				CA17CCC224745B1000BDDF11 /* LocationManagerView.swift in Sources */,
-				CA7494822474A4F100B13019 /* Failing.swift in Sources */,
 				CA7494842474A4F100B13019 /* Client.swift in Sources */,
 				CA74947E2474A4F100B13019 /* MapView.swift in Sources */,
 				CA17CCC024745B1000BDDF11 /* AppDelegate.swift in Sources */,
@@ -785,21 +779,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6A102C712CF36059006E5DB6 /* CoreLocationClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreLocationClient;
+		};
+		6A102C732CF36066006E5DB6 /* CoreLocationClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreLocationClient;
+		};
 		CA17CC3824720BEB00BDDF11 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ComposableArchitecture;
 		};
-		CA17CCB52474582000BDDF11 /* ComposableCoreLocation */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ComposableCoreLocation;
-		};
 		CA17CCE224745B1A00BDDF11 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ComposableArchitecture;
-		};
-		CA17CCE424745B1A00BDDF11 /* ComposableCoreLocation */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ComposableCoreLocation;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

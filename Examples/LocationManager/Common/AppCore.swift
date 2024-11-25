@@ -1,5 +1,5 @@
 import ComposableArchitecture
-import ComposableCoreLocation
+import CoreLocationClient
 import MapKit
 
 public struct PointOfInterest: Equatable, Hashable {

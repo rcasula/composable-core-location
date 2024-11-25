@@ -8,6 +8,6 @@ extension DependencyValues {
 }
 
 extension LocationManager: DependencyKey {
-  public static let testValue = Self.failing
-  public static var liveValue = Self.live
+  public static let testValue = Self()
+  public static let liveValue = Self.live
 }
